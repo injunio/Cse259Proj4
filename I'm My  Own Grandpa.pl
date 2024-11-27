@@ -15,7 +15,9 @@ female(red_hair_grown_daughter_of_widow).
 % who are married
 % might have to see how we can make this into a rule
 married(me,pretty_widow).
+married(pretty_widow,me).
 married(my_father,red_hair_grown_daughter_of_widow).
+married(red_hair_grown_daughter_of_widow,my_father).
 
 % child_of(kid, parent)
 % the rest of the parent child relationships will be clear because of the parent rule
@@ -35,10 +37,10 @@ wife(X,Y) :- female(X), married(Y,X).
 % married(X,Y) dunno know if we need this since we already have the married as a fact
 
 % parent(X,Y) X is parent, Y is child
+% this function shows parent relations regardless of blood
 parent(X,Y) :-
     child_of(Y,X);
-    ((married(X,Z), child_of(Y,Z)); 
-    (married(Z,X), child_of(Y,Z))).
+    (married(X,Z), child_of(Y,Z)).
 
 % parent_in_law(X,Z)
 % step_parent(X,Y)
