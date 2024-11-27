@@ -13,23 +13,33 @@ female(pretty_widow).
 female(red_hair_grown_daughter_of_widow).
 
 % who are married
+% might have to see how we can make this into a rule
 married(me,pretty_widow).
 married(my_father,red_hair_grown_daughter_of_widow).
 
-% parent(parent,kid)
+% child_of(kid, parent)
 % the rest of the parent child relationships will be clear because of the parent rule
-parent(father,me).
-parent(me,bouncing_baby_boy).
-parent(pretty_widow,red_hair_grown_daughter_of_widow).
+child_of(me,my_father).
+child_of(bouncing_baby_boy,me).
+child_of(red_hair_grown_daughter_of_widow,pretty_widow).
+child_of(on_the_run_kid,red_hair_grown_daughter_of_widow).
 
 % -----------------------------------------------------------------------
 % HERE ARE OUR RULES
 % maximize these 
 % below are the example rules we can use from the slides
 
-% wife(X,Y)
-% married(X, Y) dunno know if we need this since we already have the married as a fact
-% parent(X,Y)
+% wife(X,Y) X is wife, Y is husband
+wife(X,Y) :- female(X), married(Y,X).
+
+% married(X,Y) dunno know if we need this since we already have the married as a fact
+
+% parent(X,Y) X is parent, Y is child
+parent(X,Y) :-
+    child_of(Y,X);
+    ((married(X,Z), child_of(Y,Z)); 
+    (married(Z,X), child_of(Y,Z))).
+
 % parent_in_law(X,Z)
 % step_parent(X,Y)
 % biological_parent(X,Y)
