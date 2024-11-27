@@ -1,5 +1,6 @@
 % create the function "runIt" that runs the entire thing here:
 
+% -----------------------------------------------------------------------
 % HERE ARE OUR FACTS
 % minimize these
 
@@ -13,6 +14,18 @@
 % me and father
 % baby_boy and me
 
-
+% -----------------------------------------------------------------------
 % HERE ARE OUR RULES
 % maximize these 
+% below are the example rules we can use from the slides
+
+% wife(X,Y)
+% married(X, Y)
+% parent(X,Y)
+% parent_in_law(X,Z)
+% step_parent(X,Y)
+% biological_parent(X,Y)
+% grandparent(X,Y)
+% sibling(X,Y)
+% sibling_in_law(X,Y)
+% uncle_ant(X,Z)
