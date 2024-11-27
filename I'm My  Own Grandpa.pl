@@ -4,7 +4,7 @@
 % HERE ARE OUR FACTS
 % minimize these
 
-% 6 lines of male()/female()
+% who are male/female
 male(me).
 male(my_father).
 male(bouncing_baby_boy).
@@ -12,13 +12,15 @@ male(ne_the_run_kid).
 female(pretty_widow).
 female(red_hair_grown_daughter_of_widow).
 
-% next two are married()
-% between me and pretty_widow
-% between my father and red_hair_grown_daughter_of_widow
+% who are married
+married(me,pretty_widow).
+married(my_father,red_hair_grown_daughter_of_widow).
 
-% next 2 are child_of()
-% me and father
-% baby_boy and me
+% parent(parent,kid)
+% the rest of the parent child relationships will be clear because of the parent rule
+parent(father,me).
+parent(me,bouncing_baby_boy).
+parent(pretty_widow,red_hair_grown_daughter_of_widow).
 
 % -----------------------------------------------------------------------
 % HERE ARE OUR RULES
@@ -26,7 +28,7 @@ female(red_hair_grown_daughter_of_widow).
 % below are the example rules we can use from the slides
 
 % wife(X,Y)
-% married(X, Y)
+% married(X, Y) dunno know if we need this since we already have the married as a fact
 % parent(X,Y)
 % parent_in_law(X,Z)
 % step_parent(X,Y)
