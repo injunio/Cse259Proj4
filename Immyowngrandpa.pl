@@ -104,6 +104,7 @@ step_parent(X,Z) :-
 biological_parent(X,Y) :-
     child_of(Y,X,_).
 
+% WE GOTTA FIX
 % grandparent(X,Y) X is grandparent, Y is grandchild
 grandparent(X,Y) :-
     parent(Z,Y),
