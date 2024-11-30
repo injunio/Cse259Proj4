@@ -21,15 +21,10 @@ married(red_hair_grown_daughter_of_widow,my_father).
 
 % child_of(kid, parent1, parent 2)
 % there are two parents to make this easier to figure out who are the bio parents and step-parents
-% lines to make this a biconditional are locked and loaded, but test with rules before adding those lines back
-child_of(me, my_father, _).
-% child_of(me, _, my_father).
+child_of(me, my_father, unknown).
 child_of(bouncing_baby_boy, pretty_widow, me).
-% child_of(bouncing_baby_boy, me, pretty_widow).
-child_of(red_hair_grown_daughter_of_widow, _, pretty_widow).
-% child_of(red_hair_grown_daughter_of_widow, pretty_widow, _).
+child_of(red_hair_grown_daughter_of_widow, unknown, pretty_widow).
 child_of(on_the_run_kid, my_father, red_hair_grown_daughter_of_widow).
-% child_of(on_the_run_kid, red_hair_grown_daughter_of_widow, my_father).
 
 % -----------------------------------------------------------------------
 % HERE ARE OUR RULES
@@ -52,7 +47,8 @@ parent(X,Y) :-
 
 % parent_in_law(X,Z) X is parent of persons spouse, Z is person in question
 parent_in_law(X,Z) :-
-    
+    married(Z,Y),
+    child_of(Y,X,_).
 
 % step_parent(X,Z) X is parent, Z is child
 step_parent(X,Z) :-
@@ -60,7 +56,11 @@ step_parent(X,Z) :-
     not(child_of(Z,W,X))),
     married(X,W).
 
-% biological_parent(X,Y)
+% biological_parent(X,Y) X is parent, Y is child
+biological_parent(X,Y) :-
+    child_of(Y,X,_);
+    child_of(Y,_,X).
+
 % grandparent(X,Y)
 % sibling(X,Y)
 % sibling_in_law(X,Y)
