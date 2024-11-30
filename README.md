@@ -8,11 +8,11 @@ Diya Shrivastava
 Izzy:
 - created the skeleton of the code
 - added the basic facts for the characters
-- implemented the rules for wife(), parent(), parent_in_law(), step_parent, and biological_parent()
+- implemented the rules for wife(), parent(), parent_in_law(), step_parent, biological_parent(), grandparent(), sibling(), and brother()
 - Writeup: intro, background, and half of implementation
 
 Diya:
-- implemented the rules for grandparent(), sibling, sibling_in_law, and uncle_aunt()
+- implemented the rules for mother(), grandmother(), grandfather(), daughter(), son(), sibling_in_law(), uncle_aunt(), and grandchild()
 - futher commented the code
 - implemented the runIt() function
 - Writeup: other half of implementation, testing, and conclusion
