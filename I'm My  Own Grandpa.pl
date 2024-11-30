@@ -1,7 +1,10 @@
 % create the function "runIt" that runs the entire thing here:
 
-% -----------------------------------------------------------------------
-% HERE ARE OUR FACTS
+% -----------------------------------------------------------------------%
+%                                                                        %
+% HERE ARE OUR FACTS                                                     %
+%                                                                        %
+% -----------------------------------------------------------------------%
 
 % who are male/female
 male(me).
@@ -26,8 +29,11 @@ child_of(bouncing_baby_boy, pretty_widow, me).
 child_of(red_hair_grown_daughter_of_widow, unknown, pretty_widow).
 child_of(on_the_run_kid, my_father, red_hair_grown_daughter_of_widow).
 
-% -----------------------------------------------------------------------
-% HERE ARE OUR RULES
+% -----------------------------------------------------------------------%
+%                                                                        %
+% HERE ARE OUR RULES                                                     %
+%                                                                        %
+% -----------------------------------------------------------------------%
 
 % a simple not function to help with creating other rules
 not(X) :- X, !, fail.
@@ -43,7 +49,7 @@ wife(X,Y) :- female(X), married(Y,X).
 % this function shows parent relations regardless of blood
 parent(X,Y) :-
     child_of(Y,X,_);
-    (married(X,Z), child_of(Y,Z,_)).
+    step_parent(X,Y).
 
 % parent_in_law(X,Z) X is parent of persons spouse, Z is person in question
 parent_in_law(X,Z) :-
@@ -61,7 +67,11 @@ biological_parent(X,Y) :-
     child_of(Y,X,_);
     child_of(Y,_,X).
 
-% grandparent(X,Y)
+% grandparent(X,Y) X is grandparent, Y is grandchild
+grandparent(X,Y) :-
+    parent(Z,Y),
+    parent(X,Z).
+
 % sibling(X,Y)
 % sibling_in_law(X,Y)
-% uncle_ant(X,Z)
+% uncle_aunt(X,Z)
