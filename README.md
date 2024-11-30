@@ -1,12 +1,11 @@
 # Cse259Proj4
 # Members:
-Izzy
+Izzy Junio
 
-Diya
+Diya Shrivastava
 
 # Contributions:
 Izzy:
-- created the github repository
 - created the skeleton of the code
 - added the basic facts for the characters
 - implemented the rules for wife(), parent(), parent_in_law(), step_parent, and biological_parent()
