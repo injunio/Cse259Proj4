@@ -15,7 +15,6 @@ female(pretty_widow).
 female(red_hair_grown_daughter_of_widow).
 
 % who are married
-% might have to see how we can make this into a rule
 % the fact is a biconditional
 married(me,pretty_widow).
 married(pretty_widow,me).
@@ -43,7 +42,6 @@ not(X) :- X, !, fail.
 % this function shows which characters are wives
 wife(X,Y) :- female(X), married(Y,X).
 
-% married(X,Y) dunno know if we need this since we already have the married as a fact
 
 % parent(X,Y) X is parent, Y is child
 % this function shows parent relations regardless of blood
@@ -75,3 +73,17 @@ grandparent(X,Y) :-
 % sibling(X,Y)
 % sibling_in_law(X,Y)
 % uncle_aunt(X,Z)
+
+% -----------------------------------------------------------------------%
+% These are just silly extra stuff if we wanna go overboard.             %
+% They say to maximize rules anyways. These are just adding genders to   %
+%   the rules above.                                                     %
+% -----------------------------------------------------------------------%
+
+% daughter(X,Y)
+% son(X,Y)
+% brother(X,Y)
+% mother(X,Y)
+% grandchild(X,Y)
+% grandmother(X,Y)
+% grandfather(X,Y)
