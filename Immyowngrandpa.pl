@@ -1,4 +1,39 @@
 % create the function "runIt" that runs the entire thing here:
+runIt :-
+    write('Is redhair the daughter of i?: '),
+    (daughter(red_hair_grown_daughter_of_widow, i) -> write('true'); write('false')), nl,
+    write('Is redhair the mother of i?: '),
+    (mother(red_hair_grown_daughter_of_widow, i) -> write('true'); write('false')), nl,
+    write('Is dad the son in law of i?: '),
+    (parent_in_law(i, my_father) -> write('true'); write('false')), nl,
+    write('Is baby the brother of dad?: '),
+    (brother(bouncing_baby_boy, my_father) -> write('true'); write('false')), nl,
+    write('Is baby the uncle of i?: '),
+    nl,
+    % -----------------------------------------------%
+    % call the above rule once it is done <3         %
+    % -----------------------------------------------%
+    write('Is baby the brother of redhair?: '),
+    (brother(bouncing_baby_boy, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
+    write('Is onrun the grandchild of i?: '),
+    nl,
+    % -----------------------------------------------%
+    % call the above rule once it is done <3         %
+    % -----------------------------------------------%
+    write('Is widow the mother of rehair?: '),
+    (mother(pretty_widow, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
+    write('Is widow the grandmother of i?: '),
+    (grandmother(pretty_widow, i) -> write('true'); write('false')), nl,
+    write('Is i the grandchild of widow?: '),
+    nl,
+    % -----------------------------------------------%
+    % call the above rule once it is done <3         %
+    % -----------------------------------------------%
+    write('Is i the grandfather of i?: '),
+    (grandfather(i,i) -> write('true'); write('false')), nl, nl,
+    
+    write('Is John his own grandfather?: '),
+    (grandfather(i,i) -> write('true'); write('false')).
 
 % -----------------------------------------------------------------------%
 %                                                                        %
@@ -53,12 +88,11 @@ wife(X,Y) :- female(X), married(Y,X).
 parent(X,Y) :-
     biological_parent(X,Y);
     step_parent(X,Y).
-    % should we add biological_parent here? 
 
 % parent_in_law(X,Z) X is parent of persons spouse, Z is person in question
 parent_in_law(X,Z) :-
     married(Z,Y),
-    child_of(Y,X,_).
+    parent(X,Y).
 
 % step_parent(X,Z) X is parent, Z is child
 step_parent(X,Z) :-
