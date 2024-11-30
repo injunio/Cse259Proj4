@@ -13,5 +13,5 @@ Izzy:
 
 Diya:
 - implemented the rules for grandparent(), sibling, sibling_in_law, and uncle_aunt()
-- futher commenting the code
+- futher commented the code
 - implemented the runIt() function
