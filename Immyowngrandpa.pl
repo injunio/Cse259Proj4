@@ -9,10 +9,8 @@ runIt :-
     write('Is dad the son in law of i?: '),
     (parent_in_law(i, my_father) -> write('true'); write('false')), nl,
 
-    write('Is widow the parent of baby: '),
-    (parent(pretty_widow,bouncing_baby_boy) -> write('true'); write('false')), nl,
-    write('Is widow the parent of redhair: '),
-    (parent(pretty_widow, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
+    write('Is baby the brother of dad?: '),
+    (brother(bouncing_baby_boy, my_father) -> write('true'); write('false')), nl,
 
     write('Is baby the brother-in-law of dad?: '), 
     (sibling_in_law(bouncing_baby_boy,my_father)->write('true'); write('false')),nl,
@@ -23,11 +21,14 @@ runIt :-
     write('Is baby the brother of redhair?: '),
     (brother(bouncing_baby_boy, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
 
-    write('Is redhair grandmother of baby boy?: '),
-    (grandmother(red_hair_grown_daughter_of_widow, bouncing_baby_boy) -> write('true'); write('false')), nl,
+    write(' on run child of redhair?: '),
+    (parent(red_hair_grown_daughter_of_widow, on_the_run_kid)->write('true');write('false')),nl,
+
+    write(' redhair child of i?: '),
+    (parent(i, red_hair_grown_daughter_of_widow)->write('true');write('false')),nl,
 
     write('Is onrun the grandchild of i?: '),
-    (grandchild(on_the_run_kid, i) -> write('true'); write('false')),nl,
+    (grandchild(on_the_run_kid, i)->write('true'); write('false')),nl,
 
     write('Is widow the mother of rehair?: '),
     (mother(pretty_widow, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
@@ -36,7 +37,7 @@ runIt :-
     (grandmother(pretty_widow, i) -> write('true'); write('false')), nl,
 
     write('Is i the grandchild of widow?: '),
-    (grandchild(i, pretty_widowwidow)->write('true'); write('false')), nl,
+    (grandchild(i, pretty_widow)->write('true'); write('false')), nl,
 
     write('Is i the grandfather of i?: '),
     (grandfather(i,i) -> write('true'); write('false')), nl,
@@ -115,7 +116,7 @@ biological_parent(X,Y) :-
 
 
 % grandparent(X,Y) X is grandparent, Y is grandchild
-grandparent(X,Y) :- 
+grandparent(X,Y) :-  
     parent(X,Z), parent(Z,Y). 
 
 % sibling(X,Y)  X is the sibling of Y, meaning they have at least one shared parent 
@@ -142,7 +143,8 @@ aunt(X,Z) :- uncle_aunt(X,Z), female(X).
 mother(X,Y) :- parent(X,Y), female(X).
 
 % grandchild(X,Y) X is grandchild, Y is grandparent 
-grandchild(X,Y) :- grandparent(Y,X). 
+grandchild(X,Y) :- grandparent(Y,X).
+
 
 % grandmother(X,Y) X is the grandmother of Y
 grandmother(X,Y) :- grandparent(X,Y), female(X).
