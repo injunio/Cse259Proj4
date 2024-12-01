@@ -142,8 +142,7 @@ aunt(X,Z) :- uncle_aunt(X,Z), female(X).
 mother(X,Y) :- parent(X,Y), female(X).
 
 % grandchild(X,Y) X is grandchild, Y is grandparent 
-grandchild(X,Y) :- 
-    child_of
+grandchild(X,Y) :- grandparent(Y,X). 
 
 % grandmother(X,Y) X is the grandmother of Y
 grandmother(X,Y) :- grandparent(X,Y), female(X).
