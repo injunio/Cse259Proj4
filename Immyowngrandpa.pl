@@ -21,12 +21,6 @@ runIt :-
     write('Is baby the brother of redhair?: '),
     (brother(bouncing_baby_boy, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
 
-    write(' on run child of redhair?: '),
-    (parent(red_hair_grown_daughter_of_widow, on_the_run_kid)->write('true');write('false')),nl,
-
-    write(' redhair child of i?: '),
-    (parent(i, red_hair_grown_daughter_of_widow)->write('true');write('false')),nl,
-
     write('Is onrun the grandchild of i?: '),
     (grandchild(on_the_run_kid, i)->write('true'); write('false')),nl,
 
@@ -117,7 +111,8 @@ biological_parent(X,Y) :-
 
 % grandparent(X,Y) X is grandparent, Y is grandchild
 grandparent(X,Y) :-  
-    parent(X,Z), parent(Z,Y). 
+    parent(X,Z), parent(Z,Y); 
+    parent_in_law(X,Z), parent(Z,Y).
 
 % sibling(X,Y)  X is the sibling of Y, meaning they have at least one shared parent 
 sibling(X,Y) :-
