@@ -8,15 +8,15 @@ runIt :-
     (parent_in_law(i, my_father) -> write('true'); write('false')), nl,
     write('Is baby the brother of dad?: '),
     (brother(bouncing_baby_boy, my_father) -> write('true'); write('false')), nl,
-    write('Is baby the uncle of i?: '),
-    nl,
+    write('Is baby the uncle of i?: '), 
+    (uncle(baby, i) -> write('true'); write('false')),nl,
     % -----------------------------------------------%
     % call the above rule once it is done <3         %
     % -----------------------------------------------%
     write('Is baby the brother of redhair?: '),
     (brother(bouncing_baby_boy, red_hair_grown_daughter_of_widow) -> write('true'); write('false')), nl,
     write('Is onrun the grandchild of i?: '),
-    nl,
+    (grandchild(on_the_run_kid, i) -> write('true'); write('false')),nl,
     % -----------------------------------------------%
     % call the above rule once it is done <3         %
     % -----------------------------------------------%
@@ -56,6 +56,7 @@ married(pretty_widow,i).
 married(my_father,red_hair_grown_daughter_of_widow).
 married(red_hair_grown_daughter_of_widow,my_father).
 
+% children facts 
 % child_of(kid, parent1, parent 2)
 % there are two parents to make this easier to figure out who are the bio parents and step-parents
 child_of(i, my_father, unknown).
@@ -104,11 +105,9 @@ step_parent(X,Z) :-
 biological_parent(X,Y) :-
     child_of(Y,X,_).
 
-% WE GOTTA FIX
+
 % grandparent(X,Y) X is grandparent, Y is grandchild
-grandparent(X,Y) :-
-    parent(Z,Y),
-    parent(X,Z).
+grandparent(X,Y) :- parent(X,Z), parent(Z,Y) ; married(X,Z), parent(Z,Y).
 
 % sibling(X,Y)  X is the sibling of Y, meaning they have at least one shared parent 
 sibling(X,Y) :-
@@ -116,11 +115,17 @@ sibling(X,Y) :-
 
 % sibling_in_law(X,Y) X is the sibling in law of Y, meaning X is married to the sibling of Y or Y is married to the sibling of X
 % uncle_aunt(X,Z) X is uncle/aunt and Z is niece/nephew, meaning X is sibling of the parent of Z, or Z is the child_of the sibling of X
+uncle_aunt(X,Z):- parent(Y,Z), sibling(X,Y). 
+
+uncle(X,Z) :- uncle_aunt(X,Z), male(X).
+
+aunt(X,Z) :- uncle_aunt(X,Z), female(X).
 
 % mother(X,Y) X is the mother of Y
 mother(X,Y) :- parent(X,Y), female(X).
 
-% grandchild(X,Y) 
+% grandchild(X,Y) X is grandchild, Y is grandparent 
+grandchild(X,Y) :- grandparent(Y,X). 
 
 % grandmother(X,Y) X is the grandmother of Y
 grandmother(X,Y) :- grandparent(X,Y), female(X).
