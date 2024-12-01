@@ -72,7 +72,6 @@ child_of(red_hair_grown_daughter_of_widow, pretty_widow, unknown).
 child_of(on_the_run_kid, my_father, red_hair_grown_daughter_of_widow).
 child_of(on_the_run_kid, red_hair_grown_daughter_of_widow, my_father).
 
-
 % -----------------------------------------------------------------------%
 %                                                                        %
 % HERE ARE OUR RULES                                                     %
@@ -108,7 +107,6 @@ step_parent(X,Z) :-
 biological_parent(X,Y) :-
     child_of(Y,X,_).
 
-
 % grandparent(X,Y) X is grandparent, Y is grandchild
 grandparent(X,Y) :-  
     parent(X,Z), parent(Z,Y); 
@@ -140,7 +138,6 @@ mother(X,Y) :- parent(X,Y), female(X).
 % grandchild(X,Y) X is grandchild, Y is grandparent 
 grandchild(X,Y) :- grandparent(Y,X).
 
-
 % grandmother(X,Y) X is the grandmother of Y
 grandmother(X,Y) :- grandparent(X,Y), female(X).
 
@@ -155,4 +152,7 @@ daughter(X,Y) :- parent(Y,X), female(X).
 
 % son(X,Y) X is the son of Y
 son(X,Y) :- parent(Y,X), male(X).
+
+% father(X,Y) X is the father of Y 
+father(X,Y) :- parent(X,Y), male(X). 
 
